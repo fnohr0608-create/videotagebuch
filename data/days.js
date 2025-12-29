@@ -2,7 +2,7 @@
 
 const days = {
   "2025-08-21": {
-    video: "8OzMvzjnVPY",
+    video: "https://www.youtube-nocookie.com/embed/8OzMvzjnVPY",
     text: "Der erste wirkliche Eintrag. Noch vorsichtig, aber bewusst."
   }
 };
