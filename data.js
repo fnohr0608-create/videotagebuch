@@ -1,6 +1,6 @@
 const entries = {
   "2025-08-01": {
-    video: "8OzMvzjnVPY",
+    video: "https://www.youtube-nocookie.com/embed/8OzMvzjnVPY",
     text: "Ein leiser Anfang. Viel Luft, wenig Worte."
   },
   "2025-08-03": {
