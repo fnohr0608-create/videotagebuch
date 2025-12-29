@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Für Marie</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f4f4f4;
+      margin: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+    }
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+    }
+    .day {
+      background: #eee;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: bold;
+      color: #555;
+    }
+    .has-video {
+      background: #dfe6e9;
+      cursor: pointer;
+    }
+    .has-video:hover {
+      background: #cfd8dc;
+    }
+    a { text-decoration: none; color: inherit; }
+  </style>
+</head>
+
+<body>
+<div class="container">
+  <h2>Januar 2025</h2>
+
+  <div class="calendar">
+    <div></div><div></div><div></div>
+    <a href="tage/2025-01-03.html"><div class="day has-video">3</div></a>
+    <a href="tage/2025-01-04.html"><div class="day has-video">4</div></a>
+    <div class="day">5</div>
+    <div class="day">6</div>
+  </div>
+</div>
+</body>
+</html>
