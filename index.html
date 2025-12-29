@@ -5,18 +5,25 @@
   <title>Für Marie</title>
   <style>
     body {
-      font-family: Arial;
+      font-family: Arial, sans-serif;
       background: #f4f4f4;
       margin: 0;
     }
     .container {
-      max-width: 800px;
+      max-width: 900px;
       margin: 40px auto;
       background: white;
       padding: 30px;
       border-radius: 12px;
     }
-    .calendar {
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .month {
+      margin-bottom: 40px;
+    }
+    .grid {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
       gap: 10px;
@@ -26,31 +33,100 @@
       padding: 15px;
       border-radius: 8px;
       text-align: center;
+      position: relative;
       font-weight: bold;
       color: #555;
     }
-    .has-video {
+    .has-entry {
       background: #dfe6e9;
       cursor: pointer;
     }
-    .has-video:hover {
+    .has-entry:hover {
       background: #cfd8dc;
     }
-    a { text-decoration: none; color: inherit; }
+    .preview {
+      display: none;
+      position: absolute;
+      bottom: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #333;
+      color: white;
+      padding: 8px;
+      border-radius: 6px;
+      font-size: 12px;
+      width: 180px;
+      z-index: 10;
+    }
+    .has-entry:hover .preview {
+      display: block;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
   </style>
 </head>
 
 <body>
 <div class="container">
-  <h2>Januar 2025</h2>
+  <h2>August 2025 – August 2026</h2>
 
-  <div class="calendar">
-    <div></div><div></div><div></div>
-    <a href="tage/2025-01-03.html"><div class="day has-video">3</div></a>
-    <a href="tage/2025-01-04.html"><div class="day has-video">4</div></a>
-    <div class="day">5</div>
-    <div class="day">6</div>
-  </div>
+  <div id="calendar"></div>
 </div>
+
+<script src="data.js"></script>
+<script>
+const calendar = document.getElementById("calendar");
+
+function createMonth(year, month) {
+  const monthDiv = document.createElement("div");
+  monthDiv.className = "month";
+
+  const title = document.createElement("h3");
+  title.textContent = new Date(year, month).toLocaleString("de-DE", { month: "long", year: "numeric" });
+  monthDiv.appendChild(title);
+
+  const grid = document.createElement("div");
+  grid.className = "grid";
+
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dateKey = `${year}-${String(month+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+    const day = document.createElement("div");
+    day.className = "day";
+    day.textContent = d;
+
+    if (entries[dateKey]) {
+      day.classList.add("has-entry");
+
+      const link = document.createElement("a");
+      link.href = `day.html?date=${dateKey}`;
+
+      const preview = document.createElement("div");
+      preview.className = "preview";
+      preview.textContent = entries[dateKey].text;
+
+      day.appendChild(preview);
+      link.appendChild(day);
+      grid.appendChild(link);
+    } else {
+      grid.appendChild(day);
+    }
+  }
+
+  monthDiv.appendChild(grid);
+  calendar.appendChild(monthDiv);
+}
+
+// August 2025 → August 2026
+let y = 2025, m = 7;
+for (let i = 0; i < 13; i++) {
+  createMonth(y, m);
+  m++;
+  if (m > 11) { m = 0; y++; }
+}
+</script>
 </body>
 </html>
