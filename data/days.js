@@ -1,8 +1,10 @@
 // data/days.js
 
+
 const days = {
   "2025-08-21": {
-    description: "Test"
-    video: "https://www.youtube-nocookie.com/embed/8OzMvzjnVPY",
+    description: "Heute war viel los in meinem Kopf.",
+    video: "https://www.youtube-nocookie.com/embed/8OzMvzjnVPY"
   }
 };
+
