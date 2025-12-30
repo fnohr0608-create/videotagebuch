@@ -32,26 +32,25 @@
 </head>
 
 <body>
+
 <div class="container">
   <h2 id="date"></h2>
-  <p id="text"></p>
-  <iframe id="video" allowfullscreen></iframe>
+  <p id="description"></p>
+
+  <iframe
+    id="video"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+
   <br>
   <a href="index.html">← zurück zum Kalender</a>
 </div>
 
-<script src="data.js"></script>
-<script>
-const params = new URLSearchParams(window.location.search);
-const date = params.get("date");
-
-const entry = entries[date];
-document.getElementById("date").textContent = date;
-document.getElementById("text").textContent = entry.text;
-document.getElementById("video").src = `https://www.youtube.com/embed/${entry.video}`;
-</script>
-  <script src="data/days.js"></script>
-  <script src="day.js"></script>
+<!-- WICHTIG: Reihenfolge -->
+<script src="data/days.js"></script>
+<script src="day.js"></script>
 
 </body>
 </html>
