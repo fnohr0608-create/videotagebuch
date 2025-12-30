@@ -112,7 +112,7 @@ function createMonth(year, month) {
       dayDiv.classList.add("has-entry");
       const previewDiv = document.createElement("div");
       previewDiv.className = "preview";
-      previewDiv.textContent = days[dateStr].preview;
+      previewDiv.textContent = days[dateStr].describtion;
       dayDiv.appendChild(previewDiv);
 
       const link = document.createElement("a");
