@@ -74,7 +74,7 @@
   <div id="calendar"></div>
 </div>
 
-<!-- ✅ EINZIGE Datenquelle -->
+<!-- EINZIGE Datenquelle -->
 <script src="data/days.js"></script>
 
 <script>
@@ -94,27 +94,32 @@ function createMonth(year, month) {
   const grid = document.createElement("div");
   grid.className = "grid";
 
-  const firstDay = new Date(year, month, 1).getDay(); // 0 = Sonntag
+  const firstDay = new Date(year, month, 1).getDay(); // Sonntag = 0
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-  // leere Felder vor dem 1. Tag
-  for (let i = 0; i < (firstDay + 6) % 7; i++) {
-    const empty = document.createElement("div");
-    grid.appendChild(empty);
+  // Leere Felder vor dem 1. Tag (Mo-Start)
+  const offset = (firstDay + 6) % 7;
+  for (let i = 0; i < offset; i++) {
+    grid.appendChild(document.createElement("div"));
   }
 
   for (let day = 1; day <= daysInMonth; day++) {
-    const dateStr = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+    const dateStr =
+      `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+
     const dayDiv = document.createElement("div");
     dayDiv.className = "day";
 
     if (days[dateStr]) {
       dayDiv.classList.add("has-entry");
+
+      // 🔹 HOVER-TEXT (Beschreibung)
       const previewDiv = document.createElement("div");
       previewDiv.className = "preview";
-      previewDiv.textContent = days[dateStr].describtion;
+      previewDiv.textContent = days[dateStr].description;
       dayDiv.appendChild(previewDiv);
 
+      // 🔹 Klickbarer Link zur Tagesseite
       const link = document.createElement("a");
       link.href = `day.html?date=${dateStr}`;
       link.textContent = day;
@@ -130,13 +135,13 @@ function createMonth(year, month) {
   calendar.appendChild(monthDiv);
 }
 
-// Kalender von August 2025 bis August 2026
-for (let y = 2025; y <= 2026; y++) {
-  const startMonth = y === 2025 ? 7 : 0; // August 2025 = 7 (0-basiert)
-  const endMonth = y === 2026 ? 7 : 11;
-  for (let m = startMonth; m <= endMonth; m++) {
-    createMonth(y, m);
+// 🔹 Kalender von August 2025 bis August 2026
+for (let year = 2025; year <= 2026; year++) {
+  const startMonth = year === 2025 ? 7 : 0;
+  const endMonth = year === 2026 ? 7 : 11;
+
+  for (let month = startMonth; month <= endMonth; month++) {
+    createMonth(year, month);
   }
 }
 </script>
-
