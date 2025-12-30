@@ -6,6 +6,7 @@ const days = {
     video: "https://www.youtube-nocookie.com/embed/8OzMvzjnVPY",
     description: "Irgendwas muss ich halt machen :)"
   },
+  
    "2025-08-22": {
     video: "https://www.youtube-nocookie.com/embed/8OzMvzjnVPY",
     description: "Heute war viel los in meinem Kopf."
