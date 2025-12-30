@@ -71,11 +71,12 @@
 <body>
 <div class="container">
   <h2>August 2025 – August 2026</h2>
-
   <div id="calendar"></div>
 </div>
 
-<script src="data.js"></script>
+<!-- ✅ EINZIGE Datenquelle -->
+<script src="data/days.js"></script>
+
 <script>
 const calendar = document.getElementById("calendar");
 
@@ -84,49 +85,10 @@ function createMonth(year, month) {
   monthDiv.className = "month";
 
   const title = document.createElement("h3");
-  title.textContent = new Date(year, month).toLocaleString("de-DE", { month: "long", year: "numeric" });
+  title.textContent = new Date(year, month).toLocaleString(
+    "de-DE",
+    { month: "long", year: "numeric" }
+  );
   monthDiv.appendChild(title);
 
-  const grid = document.createElement("div");
-  grid.className = "grid";
-
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-  for (let d = 1; d <= daysInMonth; d++) {
-    const dateKey = `${year}-${String(month+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
-    const day = document.createElement("div");
-    day.className = "day";
-    day.textContent = d;
-
-    if (entries[dateKey]) {
-      day.classList.add("has-entry");
-
-      const link = document.createElement("a");
-      link.href = `day.html?date=${dateKey}`;
-
-      const preview = document.createElement("div");
-      preview.className = "preview";
-      preview.textContent = entries[dateKey].text;
-
-      day.appendChild(preview);
-      link.appendChild(day);
-      grid.appendChild(link);
-    } else {
-      grid.appendChild(day);
-    }
-  }
-
-  monthDiv.appendChild(grid);
-  calendar.appendChild(monthDiv);
-}
-
-// August 2025 → August 2026
-let y = 2025, m = 7;
-for (let i = 0; i < 13; i++) {
-  createMonth(y, m);
-  m++;
-  if (m > 11) { m = 0; y++; }
-}
-</script>
-</body>
-</html>
+  const grid = docu
